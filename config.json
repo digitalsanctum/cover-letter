@@ -1,7 +1,7 @@
 {
   "geometry": "a4paper, left=35mm, right=35mm, top=51mm, bottom=25mm",
-  "font": "Hoefler Text",
+  "font": "NotoSerif NF",
   "alt_font": "Helvetica Neue",
   "mono_font": "Courier",
-  "font_size": "11pt"
+  "font_size": "9pt"
 }
