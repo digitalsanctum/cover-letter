@@ -7,7 +7,7 @@ from:
 - {{data.author_phone}}
 - {{data.author_city}}, {{data.author_state}}
 to:
-- {{data.company}}
+- {{data.company_name}}
 - {{data.company_address}}
 - {{data.company_city}}, {{data.company_state}} {{data.company_zip}}
 - {{data.company_country}}
@@ -23,7 +23,7 @@ geometry: {{data.geometry}}
 # customdate: YYYY-MM-DD
 ---
 
-Dear {{data.company}},
+Dear {{data.company_name}},
 
 I am writing to express my interest in the **{{data.position_title}}** position at {{data.company}}. With over 20 years of comprehensive experience in software engineering and distributed systems architecture, I believe I could bring a unique perspective and extensive technical proficiency to your team.
 
