@@ -85,8 +85,9 @@ if [ -f "$COMPANY_FILE" ]; then
     echo "Company file $COMPANY_FILE already exists; skipping lookup"
 else
     get_company_address
-    get_company_focus
 fi
+
+get_company_focus
 
 rm -rf $FINAL_DATA_FILE
 
