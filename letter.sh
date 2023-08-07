@@ -87,7 +87,12 @@ else
     get_company_address
 fi
 
-get_company_focus
+# check if position file exists
+if [ -f "$POSITION_FILE" ]; then
+    echo "Position file $POSITION_FILE already exists; skipping lookup"
+else
+    get_company_focus
+fi
 
 rm -rf $FINAL_DATA_FILE
 
