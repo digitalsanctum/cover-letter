@@ -16,20 +16,20 @@ echo "Encoded company name: $ENCODED_COMPANY_NAME"
 
 # convert company_name to valid file name with json suffix
 COMPANY_PREFIX=$(printf %s "$COMPANY" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -d '[:punct:]')
+COMPANY_DIR="letters/$COMPANY_PREFIX"
+mkdir -p $COMPANY_DIR
 
-mkdir -p $COMPANY_PREFIX
-
-COMPANY_FILE="$COMPANY_PREFIX/company.json"
+COMPANY_FILE="$COMPANY_DIR/company.json"
 echo "Company file: $COMPANY_FILE"
 
 TEMPLATE_FILE="letter.md.mustache"
 
 AUTHOR_FILE="author.json"
 CONFIG_FILE="config.json"
-MARKDOWN_OUTPUT_FILE="${COMPANY_PREFIX}/letter.md"
-POSITION_FILE="${COMPANY_PREFIX}/position.json"
-FINAL_DATA_FILE="${COMPANY_PREFIX}/data.json"
-FINAL_PDF_FILE="${COMPANY_PREFIX}/final.pdf"
+MARKDOWN_OUTPUT_FILE="${COMPANY_DIR}/letter.md"
+POSITION_FILE="${COMPANY_DIR}/position.json"
+FINAL_DATA_FILE="${COMPANY_DIR}/data.json"
+FINAL_PDF_FILE="${COMPANY_DIR}/final.pdf"
 
 function get_company_address() {
   # given the company name, curl the local service to get the address
