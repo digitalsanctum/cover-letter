@@ -33,7 +33,7 @@ FINAL_PDF_FILE="${COMPANY_DIR}/final.pdf"
 
 function get_company_address() {
   # given the company name, curl the local service to get the address
-      CA_URL="http://localhost:8000/companies/$ENCODED_COMPANY_NAME/address"
+      CA_URL="http://localhost:8000/pdl/companies/$ENCODED_COMPANY_NAME"
       echo "Getting company address from $CA_URL"
       COMPANY_RESPONSE=$(curl -s "$CA_URL")
       if [ $? -ne 0 ]; then
@@ -41,12 +41,16 @@ function get_company_address() {
           exit 1
       fi
 
-      COMPANY_NAME=$(echo $COMPANY_RESPONSE | jq -r '.company_name')
-      COMPANY_ADDRESS=$(echo $COMPANY_RESPONSE | jq -r '.mailing_address.street')
-      COMPANY_CITY=$(echo $COMPANY_RESPONSE | jq -r '.mailing_address.city')
-      COMPANY_STATE=$(echo $COMPANY_RESPONSE | jq -r '.mailing_address.state_or_province')
-      COMPANY_ZIP=$(echo $COMPANY_RESPONSE | jq -r '.mailing_address.postal_code')
-      COMPANY_COUNTRY=$(echo $COMPANY_RESPONSE | jq -r '.mailing_address.country')
+      COMPANY_NAME=$(echo $COMPANY_RESPONSE | jq -r '.name')
+      COMPANY_ADDRESS=$(echo $COMPANY_RESPONSE | jq -r '.location.street_address')
+      COMPANY_CITY=$(echo $COMPANY_RESPONSE | jq -r '.location.locality')
+      COMPANY_STATE=$(echo $COMPANY_RESPONSE | jq -r '.location.region')
+      COMPANY_ZIP=$(echo $COMPANY_RESPONSE | jq -r '.location.postal_code')
+      COMPANY_COUNTRY=$(echo $COMPANY_RESPONSE | jq -r '.location.country')
+
+      if [ "$COMPANY_ADDRESS" == "null" ]; then
+          COMPANY_ADDRESS=""
+      fi
 
 cat > $COMPANY_FILE <<EOF
 {

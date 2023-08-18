@@ -8,7 +8,9 @@ from:
 - {{data.author_city}}, {{data.author_state}}
 to:
 - {{data.company_name}}
+{{#data.company_address}}
 - {{data.company_address}}
+{{/data.company_address}}
 - {{data.company_city}}, {{data.company_state}} {{data.company_zip}}
 - {{data.company_country}}
 
